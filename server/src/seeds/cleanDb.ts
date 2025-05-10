@@ -7,11 +7,11 @@ export default async (modelName: "Question", collectionName: string) => {
       throw new Error(`Model "${modelName}" does not exist.`);
     }
 
-    let modelExists = await models[modelName].db.db.listCollections({
+    let modelExists = await models[modelName].db.db?.listCollections({
       name: collectionName
     }).toArray();
 
-    if (modelExists.length) {
+    if (modelExists?.length) {
       await db.dropCollection(collectionName);
     }
   } catch (err) {
